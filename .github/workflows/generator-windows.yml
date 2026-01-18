@@ -196,8 +196,8 @@ jobs:
           sed -i -e 's|"RustDesk"|"${{ inputs.appname }}"|' ./flutter/windows/runner/Runner.rc
           # Extras
           # ./src/lang/en.rs
-          sed -i -e 's|"Your desktop can be accessed with this ID and password."|"Your computer can be accessed using the following information."|' .src/lang/en.rs
-          sed -i -e 's|"Made with heart in this chaotic world!"|"Your technology solutions source."|' .src/lang/en.rs
+          sed -i -e 's|"Your desktop can be accessed with this ID and password."|"Your computer can be accessed using the following information."|' ./src/lang/en.rs
+          sed -i -e 's|"Made with heart in this chaotic world!"|"Your technology solutions source."|' ./src/lang/en.rs
           # ./flutter/lib/desktop/pages/desktop_home_page.dart
           sed -i -e 's|"Your Desktop"|"Remote Support"|' ./flutter/lib/desktop/pages/desktop_home_page.dart
           # End of extras
