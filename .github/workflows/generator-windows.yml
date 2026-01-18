@@ -194,7 +194,13 @@ jobs:
           sed -i -e 's|VALUE "InternalName", "rustdesk" "\0"|VALUE "InternalName", "${{ inputs.appname }}" "\0"|' ./flutter/windows/runner/Runner.rc
           sed -i -e 's|"rustdesk.exe"|"${{ inputs.filename }}"|' ./flutter/windows/runner/Runner.rc
           sed -i -e 's|"RustDesk"|"${{ inputs.appname }}"|' ./flutter/windows/runner/Runner.rc
+          # Extras
           # ./src/lang/en.rs
+          sed -i -e 's|"Your desktop can be accessed with this ID and password."|"Your computer can be accessed using the following information."|' .src/lang/en.rs
+          sed -i -e 's|"Made with heart in this chaotic world!"|"Your technology solutions source."|' .src/lang/en.rs
+          # ./flutter/lib/desktop/pages/desktop_home_page.dart
+          sed -i -e 's|"Your Desktop"|"Remote Support"|' ./flutter/lib/desktop/pages/desktop_home_page.dart
+          # End of extras
           # change powered by rustdek to powered by compname
           if [ ! -z "${{ fromJson(inputs.extras).compname }}" ]; then
             find ./src/lang -name "*.rs" -exec sed -i '/powered_by_me/s|RustDesk|${{ fromJson(inputs.extras).compname }}|g' {} \;
@@ -226,7 +232,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          sed -i -e 's|Purslane Ltd|${{ fromJson(inputs.extras).compname }}|' ./flutter/lib/desktop/pages/desktop_setting_page.dart
+          sed -i -e 's|Purslane Ltd.|${{ fromJson(inputs.extras).compname }}|' ./flutter/lib/desktop/pages/desktop_setting_page.dart
           sed -i -e 's|PURSLANE|${{ fromJson(inputs.extras).compname }}|' ./res/msi/preprocess.py
           sed -i -e 's|Purslane Ltd|${{ fromJson(inputs.extras).compname }}|' ./res/msi/preprocess.py
           sed -i -e 's|"Copyright © 2025 Purslane Ltd. All rights reserved."|"Copyright © 2025 ${{ fromJson(inputs.extras).compname }}. All rights reserved."|' ./flutter/windows/runner/Runner.rc
